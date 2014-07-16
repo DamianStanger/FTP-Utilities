@@ -36,8 +36,12 @@ function ListDirectoryDetails($dirName)
     $FTPResponse = $FTPRequest.GetResponse()
     $ResponseStream = $FTPResponse.GetResponseStream()
     $FTPReader = New-Object System.IO.Streamreader -ArgumentList $ResponseStream
-    $data = $FTPReader.ReadToEnd()    
+    $data = $FTPReader.ReadToEnd() 
+    
+    $ResponseStream.Close()   
     $FTPReader.Close()    
+    $ResponseStream.Dispose()
+    $FTPReader.Dispose()
 
     $stringArray = $data.Split("`n")
 
@@ -115,10 +119,6 @@ function DeleteFile($fileNameWithPath)
 
     # Delete
     $FTPrequest.GetResponse()
-
-    # Cleanup
-    $Run.Close()
-    $Run.Dispose()
 }
 
 function RemoveDirectory($dirNameWithPath)
@@ -136,10 +136,6 @@ function RemoveDirectory($dirNameWithPath)
 
     # Remove Dir
     $FTPrequest.GetResponse()
-
-    # Cleanup
-    $Run.Close()
-    $Run.Dispose()
 }
 
 
