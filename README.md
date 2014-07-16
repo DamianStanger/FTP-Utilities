@@ -16,5 +16,6 @@ When running against an Azure website run with the following:
 .\FTPRecursiveDelete.ps1 -ftpRoot <publishUrl> -Username <userName> -Password <UserPwd>
 ```
 Example:
-``` .\FTPRecursiveDelete.ps1 -ftpRoot ftp://waws-prod-db1-123.ftp.azurewebsites.windows.net/site/wwwroot/ -Username 'MyWebsite\$MyWebsite' -Password AzurePa55w0rdX3St0aagu9pn1viHyLdJGGG8vidgorXnKharMgggk1KlMxx
+``` 
+.\FTPRecursiveDelete.ps1 -ftpRoot ftp://waws-prod-db1-123.ftp.azurewebsites.windows.net/site/wwwroot/ -Username 'MyWebsite\$MyWebsite' -Password AzurePa55w0rdX3St0aagu9pn1viHyLdJGGG8vidgorXnKharMgggk1KlMxx
 ```
