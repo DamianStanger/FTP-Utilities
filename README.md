@@ -1,5 +1,11 @@
-FTPRecursiveDelete
-==================
+FTP-Utilities
+=============
+
+A collection of powershell utilities to work with ftp sites
+
+
+FTPRecursiveDelete.ps1
+======================
 
 Powershell to recursively delete everything from a FTP directory.
 
