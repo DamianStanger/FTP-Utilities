@@ -1,6 +1,5 @@
 Param(
-    [string]$ftpRoot,
-    [string]$websiteName,
+    [string]$ftpRoot,    
     [string]$username,
     [string]$password
 )
@@ -8,10 +7,9 @@ Write-Host ** Starting FTPRecursiveDelete
 
 Write-host ** Arguments **
 Write-Host "ftpRoot     :" $ftpRoot
-Write-Host "WebsiteName :" $websiteName
 Write-Host "Username    :" $username
 Write-Host "Password    :" $password
-
+Write-Host
 
 Add-Type -Language CSharp @"
 public class DirectoryItem{
@@ -26,7 +24,7 @@ function ListDirectoryDetails($dirName)
 
     $FTPRequest = [System.Net.FtpWebRequest]::Create("$dirName")
     $FTPRequest = [System.Net.FtpWebRequest]$FTPRequest
-    $FTPRequest.Credentials = New-Object System.Net.NetworkCredential($username.Normalize(), $password.Normalize(), $websiteName.Normalize())
+    $FTPRequest.Credentials = New-Object System.Net.NetworkCredential($username.Normalize(), $password.Normalize())
     $FTPRequest.Method = [System.Net.WebRequestMethods+Ftp]::ListDirectoryDetails
     $FTPRequest.EnableSSL = $False
     $FTPRequest.UseBinary = $True
@@ -111,7 +109,7 @@ function DeleteFile($fileNameWithPath)
     $FTPRequest = [System.Net.FtpWebRequest]::Create("$fileNameWithPath")
     $FTPRequest = [System.Net.FtpWebRequest]$FTPRequest
     $FTPrequest.Method = [System.Net.WebRequestMethods+Ftp]::DeleteFile
-    $FTPRequest.Credentials = New-Object System.Net.NetworkCredential($username.Normalize(), $password.Normalize(), $websiteName.Normalize())
+    $FTPRequest.Credentials = New-Object System.Net.NetworkCredential($username.Normalize(), $password.Normalize())
     $FTPRequest.EnableSSL = $False
     $FTPRequest.UseBinary = $True
     $FTPRequest.UsePassive = $True
@@ -128,7 +126,7 @@ function RemoveDirectory($dirNameWithPath)
     $FTPRequest = [System.Net.FtpWebRequest]::Create("$dirNameWithPath")
     $FTPRequest = [System.Net.FtpWebRequest]$FTPRequest
     $FTPrequest.Method = [System.Net.WebRequestMethods+Ftp]::RemoveDirectory
-    $FTPRequest.Credentials = New-Object System.Net.NetworkCredential($username.Normalize(), $password.Normalize(), $websiteName.Normalize())
+    $FTPRequest.Credentials = New-Object System.Net.NetworkCredential($username.Normalize(), $password.Normalize())
     $FTPRequest.EnableSSL = $False
     $FTPRequest.UseBinary = $True
     $FTPRequest.UsePassive = $True
