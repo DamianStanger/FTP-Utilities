@@ -36,6 +36,9 @@ function ListDirectoryDetails($dirName)
     $FTPReader = New-Object System.IO.Streamreader -ArgumentList $ResponseStream
     $data = $FTPReader.ReadToEnd() 
     
+    #write-host ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    #write-host $data
+
     $ResponseStream.Close()   
     $FTPReader.Close()    
     $ResponseStream.Dispose()
@@ -64,9 +67,10 @@ function ListDirectoryDetails($dirName)
 
 function GetNameFromDirectoryStringItem($directoryItemAsString)
 {
-    $regex = [regex]"\S+$"
-    $match = $regex.Match($directoryItemAsString)    
-    return $match.Captures[0]
+    $regex = [regex]"(AM|PM)\s+(<DIR>|\d+)\s+(.+)$"
+    $match = $regex.Match($directoryItemAsString)  
+    #write-host $directoryItemAsString ">>>>" $match.Groups[3]
+    return $match.Groups[3]
 }
 
 function GetIsDirectoryFromDirectyStringItem($directoryItemAsString)
